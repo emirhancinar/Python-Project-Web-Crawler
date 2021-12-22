@@ -6,53 +6,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>951</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="windowOpacity">
-   <double>0.000000000000000</double>
+   <double>1.000000000000000</double>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tbwg_listele">
+   <widget class="QTableView" name="tbwg_listele">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>140</y>
-      <width>311</width>
-      <height>211</height>
+      <x>0</x>
+      <y>50</y>
+      <width>951</width>
+      <height>571</height>
      </rect>
     </property>
-    <column>
-     <property name="text">
-      <string>Id</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Ürün Adı</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Fiyat</string>
-     </property>
-    </column>
    </widget>
    <widget class="QPushButton" name="btn_listele">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>390</y>
-      <width>93</width>
-      <height>28</height>
+      <x>870</x>
+      <y>620</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
     </property>
     <property name="text">
      <string>Listele</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Aktif Ürünler</string>
     </property>
    </widget>
   </widget>
@@ -61,12 +59,24 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <width>951</width>
+     <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuCrawler">
+    <property name="title">
+     <string>Crawler</string>
+    </property>
+    <addaction name="action_r_n_Ekle"/>
+   </widget>
+   <addaction name="menuCrawler"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_r_n_Ekle">
+   <property name="text">
+    <string>Ürün Ekle</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
