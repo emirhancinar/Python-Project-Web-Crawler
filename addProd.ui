@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>673</width>
+    <width>742</width>
     <height>472</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Ürün Ekle</string>
   </property>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="txt_ad">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_2">
+  <widget class="QTextEdit" name="txt_url">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -36,9 +36,9 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>50</y>
-     <width>61</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -46,15 +46,15 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Ürün Adı&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="buddy">
-    <cstring>textEdit</cstring>
+    <cstring>txt_ad</cstring>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>90</y>
-     <width>61</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
@@ -62,10 +62,10 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Ürün URL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="buddy">
-    <cstring>textEdit_2</cstring>
+    <cstring>txt_url</cstring>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btn_ekle">
    <property name="geometry">
     <rect>
      <x>320</x>
@@ -78,17 +78,7 @@
     <string>Ekle</string>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>10</y>
-     <width>256</width>
-     <height>321</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btn_kaydet">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -101,7 +91,7 @@
     <string>Kaydet</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="btn_cwtest">
    <property name="geometry">
     <rect>
      <x>574</x>
@@ -127,13 +117,22 @@
     <string/>
    </property>
   </widget>
+  <widget class="QListWidget" name="lbx_url">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>40</y>
+     <width>301</width>
+     <height>271</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <tabstops>
-  <tabstop>textEdit</tabstop>
-  <tabstop>textEdit_2</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>tableView</tabstop>
+  <tabstop>txt_ad</tabstop>
+  <tabstop>txt_url</tabstop>
+  <tabstop>btn_ekle</tabstop>
+  <tabstop>btn_kaydet</tabstop>
  </tabstops>
  <resources/>
  <connections/>

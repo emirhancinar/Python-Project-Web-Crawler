@@ -1,26 +1,20 @@
-from PyQt5 import QtCore
+from PyQt5 import QtCore,QtGui
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QWidget
 from Ui_listele import Ui_MainWindow
 from PyQt5 import QtSql
 from Ui_addProd import Ui_dialog
 import sys
+from add_prod_controller import AddProdController
 
-from webcrawler import Form1
-
-SERVER_NAME = 'OSMAN-PC\SQLEXPRESS'
+SERVER_NAME = '.\\'
 DATABASE_NAME = 'Crawler'
 
 
 class Application(object):
 
     def showAddProd(self):
-        self.ProdDialog = QDialog()
-        self.prodController = Ui_dialog()
-        self.prodController.setupUi(self.ProdDialog)
-        self.ProdDialog.show()
-        record = QtSql.QSqlRecord()
+        self.addProd = AddProdController()
         
-
     def __init__(self, *args):
         app = QApplication(sys.argv)
     
@@ -36,7 +30,8 @@ class Application(object):
         
         
         self.model = QtSql.QSqlTableModel()
-        self.model.setTable("CrawlSonuclari")
+        #self.model.setQuery(QtSql.QSqlQuery("Select * from Urunler u Where u.urunId=1",db))
+        self.model.setTable("Urunler")
         self.model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
         self.model.select()
 
@@ -48,9 +43,6 @@ class Application(object):
         controller.tbwg_listele.hideColumn(0)
         controller.btn_listele.clicked.connect(lambda x : self.model.select())
         controller.action_r_n_Ekle.triggered.connect(self.showAddProd)
-        
-        
-        
         
         window.show()
         
