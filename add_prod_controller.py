@@ -30,15 +30,23 @@ class AddProdController(object):
     def on_kaydet(self):
 
         insert = QtSql.QSqlQuery()
-        insert.prepare(f"Insert into Urunler(urunAdi) values (:urunAdi) SELECT SCOPE_IDENTITY()")
+        insert.prepare("Insert into Urunler(urunAdi) values (:urunAdi) SELECT SCOPE_IDENTITY()")
         insert.bindValue(":urunAdi",self.prodController.txt_ad.toPlainText()) 
-        insert.exec_()
-        err = self.model.lastError()
-        print(err.text())
-        result = insert.result()
-        urunId = result.data(0)
-        print(urunId)
+        insert.exec()
+        insert.next()
+        urunId = insert.value(0)
+        urlCount = self.prodController.lbx_url.count()
+        q = QtSql.QSqlQuery()
+        q.prepare("insert into UrunURL(UrunId,Url) values " + ("(?, ?)," * urlCount).rstrip(","))
+
+        for item in range(urlCount):
+            q.addBindValue(urunId)
+            q.addBindValue(self.prodController.lbx_url.item(item).text())
+        q.exec()
+
         self.table_urun.select()
+       
+       
         # newRecord= self.table_urun.record()
         # newRecord.remove(0)
         # 

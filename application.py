@@ -6,7 +6,7 @@ from Ui_addProd import Ui_dialog
 import sys
 from add_prod_controller import *
 
-SERVER_NAME = '.\\'
+SERVER_NAME = '.\\SQLEXPRESS'
 DATABASE_NAME = 'Crawler'
 
 
