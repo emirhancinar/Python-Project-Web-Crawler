@@ -1,9 +1,9 @@
 import scrapy
 from datetime import datetime
 
-class QuotesSpider(scrapy.Spider):
-    name = "quotes"
-
+class TrendyolSpider(scrapy.Spider):
+    name = 'trendyol'
+    allowed_domains = ['trendyol.com']
     start_urls = [
         'https://www.trendyol.com/msi/mpg-x570-gaming-plus-ddr4-4400-oc-mhz-atx-am4-p-6989910',
     ]

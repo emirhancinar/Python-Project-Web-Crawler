@@ -9,7 +9,7 @@ from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 
 
-class TutorialSpiderMiddleware:
+class EeCrawlerSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -56,7 +56,7 @@ class TutorialSpiderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class TutorialDownloaderMiddleware:
+class EeCrawlerDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
@@ -69,6 +69,9 @@ class TutorialDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        request.headers.pop("User-Agent")
+
+        print(request.headers)
         # Called for each request that goes through the downloader
         # middleware.
 
