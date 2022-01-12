@@ -22,5 +22,6 @@ class HepsiburadaSpider(scrapy.Spider):
             "fiyat" : result,
             "urun-adi" : response.css("#product-name::text").get().strip(" \n\r\t"),
             "satici" : response.css(".seller span > a ::text").get().strip(" \n\r\t"),
+            'url': response.url
             }
         

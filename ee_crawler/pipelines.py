@@ -11,11 +11,12 @@ from scrapy.spiders import Spider
 
 class EeCrawlerPipeline:
     def open_spider(self, spider):
-        self.mydb = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=crawler;")
+        self.mydb = pyodbc.connect("DRIVER={SQL Server};SERVER=.\\SQLEXPRESS;DATABASE=Crawler;")
+        self.UrunId = spider.UrunId
     
     def process_item(self, item: dict, spider: Spider):
         adapter = ItemAdapter(item)
-        sql = "INSERT INTO urun_sonuclari (urun_adi, urun_fiyati, satici) Values (%s,%s,%s)" % (adapter["urun-adi"],adapter["fiyati"],adapter["satici"])
+        sql = "INSERT INTO CrawlSonuclari (UrunAdi, UrunSaticisi, UrunFiyati,UrunId,FetchTime,URL,Spider) Values (\'%s\',\'%s\',%f,%d,getdate(),\'%s\',\'%s\')" % (adapter["urun-adi"],adapter["satici"],float(adapter["fiyat"].replace(".","").replace(",",".")),self.UrunId,adapter["url"],spider.name)
         mycursor = self.mydb.cursor()
         mycursor.execute(sql)
         self.mydb.commit()

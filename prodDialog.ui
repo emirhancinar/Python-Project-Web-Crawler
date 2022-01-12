@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>677</height>
+    <width>1328</width>
+    <height>1055</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Ürün</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="urunAdi">
    <property name="geometry">
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>101</width>
+     <width>1281</width>
      <height>41</height>
     </rect>
    </property>
@@ -26,40 +26,27 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Ürün Adı&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>180</y>
-     <width>771</width>
-     <height>501</height>
+     <width>1331</width>
+     <height>871</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="crawl">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>30</y>
+     <x>1140</x>
+     <y>140</y>
      <width>75</width>
      <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>Crawl</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>30</y>
-     <width>131</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Crawl Saatlerini Düzenle</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -104,9 +91,9 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>680</x>
-     <y>150</y>
-     <width>75</width>
+     <x>1230</x>
+     <y>140</y>
+     <width>81</width>
      <height>23</height>
     </rect>
    </property>
@@ -114,7 +101,7 @@
     <string>Grafik Göster</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="minFiyat">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -124,10 +111,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;15&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
+  <widget class="QLabel" name="maxFiyat">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -137,10 +124,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;15&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="avgFiyat">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -150,7 +137,20 @@
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;15&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="crawlText">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>60</y>
+     <width>47</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

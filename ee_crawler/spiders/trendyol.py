@@ -17,9 +17,12 @@ class TrendyolSpider(scrapy.Spider):
     #         yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
+        fiyat = response.css("div.product-price-container span.prc-dsc::text").get()
+        if(fiyat == None):
+            fiyat = response.css("div.product-price-container span.prc-slg::text").get()
         yield {
             'satici': response.css('a.merchant-text::text').get(),
-            'fiyati': response.css("div.product-price-container span.prc-dsc::text").get(),
+            'fiyat':  fiyat.replace("TL","").strip(" \n\r\t"),
             'urun-adi': response.css("div.product-container h1.pr-new-br a::text").get() + response.css("div.product-container h1.pr-new-br span::text").get(),
-            'fetch-time' : datetime.now()
+            'url': response.url
         }

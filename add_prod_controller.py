@@ -8,8 +8,8 @@ from scrapy.crawler import CrawlerProcess
 from Ui_addProd import Ui_dialog
 from PyQt5 import QtGui, QtSql
 from scrapy.utils.project import get_project_settings
-from crawler.ee_crawler.ee_crawler.spiders.hepsiburada import HepsiburadaSpider
-from crawler.ee_crawler.ee_crawler.spiders.trendyol import TrendyolSpider 
+from ee_crawler.spiders.hepsiburada import HepsiburadaSpider
+from ee_crawler.spiders.trendyol import TrendyolSpider 
 from scrapyscript import Job,Processor
 
 from urllib.parse import urlparse
