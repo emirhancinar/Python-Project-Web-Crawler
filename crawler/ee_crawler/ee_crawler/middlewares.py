@@ -69,9 +69,7 @@ class EeCrawlerDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
-        request.headers.pop("User-Agent")
-
-        print(request.headers)
+        
         # Called for each request that goes through the downloader
         # middleware.
 

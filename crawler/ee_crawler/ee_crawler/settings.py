@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'ee_crawler.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ee_crawler (+http://www.yourdomain.com)'
+USER_AGENT = ''
 
 # Obey robots.txt rules
 #ROBOTSTXT_OBEY = True
@@ -62,9 +62,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'ee_crawler.pipelines.EeCrawlerPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'ee_crawler.pipelines.EeCrawlerPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
