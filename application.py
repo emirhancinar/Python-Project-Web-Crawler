@@ -5,6 +5,7 @@ from PyQt5 import QtSql
 from Ui_addProd import Ui_dialog
 import sys
 from add_prod_controller import *
+from prod_dialog_controller import ProdDialogController
 
 SERVER_NAME = '.\\SQLEXPRESS'
 DATABASE_NAME = 'Crawler'
@@ -15,6 +16,13 @@ class Application(object):
     def showAddProd(self):
             self.addProd = AddProdController(self.model)
         
+    def showUrunDialog(self):
+        model = self.controller.tbwg_listele.selectionModel()
+        selectedIndexes = model.selectedIndexes()
+        if(len(model.selectedIndexes()) > 0):
+            self.prodDialog = ProdDialogController(selectedIndexes[0].siblingAtColumn(0).data())
+        
+
     def __init__(self, *args):
         app = QApplication(sys.argv)
     
@@ -35,13 +43,14 @@ class Application(object):
         
 
         window = QMainWindow()
-        controller = Ui_MainWindow()
-        controller.setupUi(window)
-        controller.tbwg_listele.setModel(self.model)
-        controller.tbwg_listele.hideColumn(0)
-        controller.btn_listele.clicked.connect(lambda x : self.model.select())
-        controller.action_r_n_Ekle.triggered.connect(self.showAddProd)
-        
+        self.controller = Ui_MainWindow()
+        self.controller.setupUi(window)
+        self.controller.tbwg_listele.setModel(self.model)
+        self.controller.tbwg_listele.hideColumn(0)
+        self.controller.btn_listele.clicked.connect(lambda x : self.model.select())
+        self.controller.action_r_n_Ekle.triggered.connect(self.showAddProd)
+        self.controller.tbwg_listele.doubleClicked.connect(self.showUrunDialog);
+
         window.show()       
         sys.exit(app.exec_())
 

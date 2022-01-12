@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
-    <height>672</height>
+    <width>955</width>
+    <height>715</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,11 +26,17 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn_listele">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>880</x>
       <y>620</y>
       <width>75</width>
       <height>23</height>
@@ -59,8 +65,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>950</width>
-     <height>26</height>
+     <width>955</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCrawler">
