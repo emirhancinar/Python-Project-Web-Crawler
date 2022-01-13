@@ -7,7 +7,8 @@ import sys
 from add_prod_controller import *
 from prod_dialog_controller import ProdDialogController
 
-SERVER_NAME = '.\\SQLEXPRESS'
+#SERVER_NAME = 'DESKTOP-37H7N8V'
+SERVER_NAME = '.\\'
 DATABASE_NAME = 'Crawler'
 
 
