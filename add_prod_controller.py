@@ -22,8 +22,8 @@ from urllib.parse import urlparse
   
 class AddProdController(object):
     tempResults = []
-    def __init__(self,tableModel : QtSql.QSqlTableModel):
-        self.table_urun = tableModel
+    def __init__(self,select):
+        self.selectUrunler = select
         self.ProdDialog = QDialog()
         self.prodController = Ui_dialog()
         self.prodController.setupUi(self.ProdDialog)
@@ -67,7 +67,10 @@ class AddProdController(object):
     def on_ekle(self):
         item = QListWidgetItem()
         item.setFlags(item.flags() | QtCore.Qt.ItemFlag.ItemIsEditable) 
-        item.setText(self.prodController.txt_url.text())
+        url = self.prodController.txt_url.text()
+        if(url.find("?") != -1):
+            url = url.split("?")[0]
+        item.setText(url)
         self.prodController.lbx_url.addItem(item)
         self.prodController.txt_url.clear()
     
@@ -152,7 +155,7 @@ class AddProdController(object):
             q.addBindValue(self.prodController.lbx_url.item(item).text())
         q.exec()
 
-        self.table_urun.select()
+        self.selectUrunler()
         self.ProdDialog.close()
        
        

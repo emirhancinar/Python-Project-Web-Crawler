@@ -1,16 +1,10 @@
 
 
-from ast import While
-from sys import hexversion
-from time import time
-from urllib import parse
 from urllib.parse import urlparse
 from PyQt5 import QtSql
-from PyQt5.QtGui import QTextFormat
 from PyQt5.QtWidgets import QDialog
 
 from Ui_prodDialog import Ui_ProdDialog
-from models.urun import Urun
 from scrapyscript import Job,Processor
 from ee_crawler.spiders.trendyol import TrendyolSpider
 from ee_crawler.spiders.hepsiburada import HepsiburadaSpider
@@ -18,7 +12,6 @@ from scrapy.utils.project import get_project_settings
 
 
 import matplotlib.pyplot 
-import numpy as np
 
 class ProdDialogController():
     def __init__(self, urunId : int):
@@ -26,9 +19,9 @@ class ProdDialogController():
 
         query = QtSql.QSqlQuery()
         query.prepare("""Select u.UrunAdi, Min(UrunFiyati) MinFiyat,Max(UrunFiyati) MaxFiyat,AVG(UrunFiyati) AvgFiyat
-                        from CrawlSonuclari cs 
-                        left join Urunler u on u.UrunId = cs.UrunId
-                        where cs.UrunId = :urunId
+                        from Urunler u
+                        left join CrawlSonuclari cs  on u.UrunId = cs.UrunId
+                        where u.UrunId = :urunId
                         group by u.UrunAdi""")
         query.bindValue(":urunId",urunId)
         query.exec()
@@ -117,10 +110,8 @@ class ProdDialogController():
             while graf_sonuc_query.next():
                 date1.append((graf_sonuc_query.value("FetchTime").toPyDateTime()))
                 price.append(graf_sonuc_query.value("UrunFiyati"))
-            
-            xpoint=np.array(date1)
-            ypoint=np.array(price)
-            fig = matplotlib.pyplot.plot(xpoint,ypoint)
+           
+            fig = matplotlib.pyplot.plot(date1,price)
             
             matplotlib.pyplot.show()
         

@@ -15,7 +15,7 @@ DATABASE_NAME = 'Crawler'
 class Application(object):
 
     def showAddProd(self):
-            self.addProd = AddProdController(self.model)
+            self.addProd = AddProdController(self.selectUrunler)
         
     def showUrunDialog(self):
         model = self.controller.tbwg_listele.selectionModel()
@@ -36,7 +36,7 @@ class Application(object):
         if not db_list.open():
             print("connection not open")
         
-        self.model = QtSql.QSqlTableModel()
+        self.model = QtSql.QSqlQueryModel()
         #self.model.setTable("Urunler")
 
         self.listeleQuery = """Select 
@@ -50,8 +50,8 @@ class Application(object):
                                 group by u.UrunAdi,u.UrunId"""
 
         self.model.setQuery(QtSql.QSqlQuery(self.listeleQuery))
-        self.model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
-        self.model.select()
+        #self.model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
+        #self.model.select()
         
 
         window = QMainWindow()
@@ -59,6 +59,7 @@ class Application(object):
         self.controller.setupUi(window)
         self.controller.tbwg_listele.setModel(self.model)
         self.controller.tbwg_listele.hideColumn(0)
+        self.controller.tbwg_listele.contextMenuEvent = self.contextMenuEvent
         self.controller.btn_listele.clicked.connect(self.listeleBtnClick)
         self.controller.action_r_n_Ekle.triggered.connect(self.showAddProd)
         self.controller.tbwg_listele.doubleClicked.connect(self.showUrunDialog)
@@ -67,8 +68,24 @@ class Application(object):
         sys.exit(app.exec_())
 
     def listeleBtnClick(self):
+        self.selectUrunler()
+
+    def selectUrunler(self):
         self.model.setQuery(QtSql.QSqlQuery(self.listeleQuery))
 
+    def contextMenuEvent(self,event):
+        contextMenu = QMenu(self.controller.tbwg_listele)
+        newAct = contextMenu.addAction("Sil",self.removeSelectedItem)
+        action = contextMenu.exec_(self.controller.tbwg_listele.mapToGlobal(event.pos()))
+
+    def removeSelectedItem(self):
+        model = self.controller.tbwg_listele.selectionModel()
+        selectedIndexes = model.selectedIndexes()
+        if(len(model.selectedIndexes()) > 0):
+            urunId = selectedIndexes[0].siblingAtColumn(0).data()
+            QtSql.QSqlQuery(f"delete from Urunler where UrunId = {urunId}")
+            self.selectUrunler()
+            
 
 if __name__ == '__main__':
     app = Application()
