@@ -66,6 +66,7 @@ class ProdDialogController():
         self.prodController.avgFiyat.setText(str(rawUrun.value("AvgFiyat")))
         self.prodController.tableView.setColumnWidth(5,450)
         self.prodController.urunAdi.setText('<html><head/><body><p><span style=" font-size:18pt;">%s</span></p></body></html>' % (str(rawUrun.value("UrunAdi"))))
+        self.urunAdi = rawUrun.value("UrunAdi")
         
         self.prodController.crawl.clicked.connect(self.crawl)
         self.prodController.pushButton_3.clicked.connect(self.on_graf)
@@ -104,33 +105,27 @@ class ProdDialogController():
         self.model.setQuery(QtSql.QSqlQuery(self.queryText))
     
     def on_graf(self):
-        graf_sonuc_query=QtSql.QSqlQuery("Select * from CrawlSonuclari ")
-        #graf_sonuc_query.next()
-        rec=graf_sonuc_query.record()
-        
-        nameCol=rec.indexOf("UrunAdi")
-        dateCol=rec.indexOf("FetchTime")
-        priceCol=rec.indexOf("UrunFiyati")
-        a=0
-        date1=[]
-        price=[]
-        while graf_sonuc_query.next():
-            if a==0:
-                tit=graf_sonuc_query.value(nameCol)
+        urlQuery=QtSql.QSqlQuery(f"Select URL,Spider from CrawlSonuclari where UrunId = {self.urunId} group by url,Spider")
+        matplotlib.pyplot.title(self.urunAdi)
+        legends = []
+        while urlQuery.next():
+            legends.append(urlQuery.value("Spider").capitalize())
+            graf_sonuc_query=QtSql.QSqlQuery(f"Select * from CrawlSonuclari where UrunId = {self.urunId} and URL = '{urlQuery.value(0)}' order by FetchTime")
             
-            a+=1
-            date1.append((graf_sonuc_query.value(dateCol).toPyDateTime()))
-            price.append(graf_sonuc_query.value(priceCol))
-        
-        xpoint=np.array(date1)
-        ypoint=np.array(price)
-        matplotlib.pyplot.plot(xpoint,ypoint)
-        #for i in date1:
+            date1=[]
+            price=[]
+            while graf_sonuc_query.next():
+                date1.append((graf_sonuc_query.value("FetchTime").toPyDateTime()))
+                price.append(graf_sonuc_query.value("UrunFiyati"))
             
-        # plt.xlabel("Time")
-        # plt.ylabel("Price")
-        # plt.title(tit)
-        matplotlib.pyplot.show()
+            xpoint=np.array(date1)
+            ypoint=np.array(price)
+            fig = matplotlib.pyplot.plot(xpoint,ypoint)
+            
+            matplotlib.pyplot.show()
+        
+        matplotlib.pyplot.legend(legends)
+            
 
      
         

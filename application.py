@@ -8,7 +8,7 @@ from add_prod_controller import *
 from prod_dialog_controller import ProdDialogController
 
 #SERVER_NAME = 'DESKTOP-37H7N8V'
-SERVER_NAME = '.\\'
+SERVER_NAME = '.\\SQLEXPRESS'
 DATABASE_NAME = 'Crawler'
 
 
@@ -38,16 +38,18 @@ class Application(object):
         
         self.model = QtSql.QSqlTableModel()
         #self.model.setTable("Urunler")
-        self.model.setQuery(QtSql.QSqlQuery("""Select 
-                                                u.UrunId,
-                                                u.UrunAdi 'Ürün Adı', 
-                                                Min(UrunFiyati) 'Min Fiyat',
-                                                Max(UrunFiyati) 'Max Fiyat',
-                                                AVG(UrunFiyati) 'Ortalama Fiyat'
-                                                from Urunler u 
-                                                left join CrawlSonuclari cs on u.UrunId = cs.UrunId
-                                                group by u.UrunAdi,u.UrunId"""
-                        ))
+
+        self.listeleQuery = """Select 
+                                u.UrunId,
+                                u.UrunAdi 'Ürün Adı', 
+                                Min(UrunFiyati) 'Min Fiyat',
+                                Max(UrunFiyati) 'Max Fiyat',
+                                AVG(UrunFiyati) 'Ortalama Fiyat'
+                                from Urunler u 
+                                left join CrawlSonuclari cs on u.UrunId = cs.UrunId
+                                group by u.UrunAdi,u.UrunId"""
+
+        self.model.setQuery(QtSql.QSqlQuery(self.listeleQuery))
         self.model.setEditStrategy(QtSql.QSqlTableModel.OnFieldChange)
         self.model.select()
         
@@ -57,14 +59,15 @@ class Application(object):
         self.controller.setupUi(window)
         self.controller.tbwg_listele.setModel(self.model)
         self.controller.tbwg_listele.hideColumn(0)
-        self.controller.btn_listele.clicked.connect(lambda x : self.model.select())
+        self.controller.btn_listele.clicked.connect(self.listeleBtnClick)
         self.controller.action_r_n_Ekle.triggered.connect(self.showAddProd)
         self.controller.tbwg_listele.doubleClicked.connect(self.showUrunDialog)
 
         window.show()       
         sys.exit(app.exec_())
 
-        
+    def listeleBtnClick(self):
+        self.model.setQuery(QtSql.QSqlQuery(self.listeleQuery))
 
 
 if __name__ == '__main__':
